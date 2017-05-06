@@ -21,3 +21,20 @@ import "rickshaw"
 // paths "./socket" or full ones "web/static/js/socket".
 
 import socket from "./socket"
+
+function extraHandleSubmitLinkClick(el) {
+  let action = $(el).attr('href')
+  let method = $(el).data('submit-method')
+  if (action && method) {
+    $(el).closest("form").prop("method", method).prop("action", action).submit()
+    return true
+  }
+  return false
+}
+
+window.addEventListener('click', function (event) {
+  if (event.target && extraHandleSubmitLinkClick(event.target)) {
+    event.preventDefault();
+    return false;
+  }
+}, false);

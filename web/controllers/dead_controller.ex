@@ -15,7 +15,7 @@ defmodule VerkWeb.DeadController do
       per_page: paginator.per_page
   end
 
-  def destroy(conn, %{ "jobs_to_remove" => jobs_to_remove }) do
+  def destroy(conn, %{ "jobs" => jobs_to_remove }) do
     jobs_to_remove = jobs_to_remove || []
 
     for job <- jobs_to_remove, do: DeadSet.delete_job!(job)
@@ -24,6 +24,14 @@ defmodule VerkWeb.DeadController do
   end
   def destroy(conn, _params) do
     DeadSet.clear!
+
+    redirect conn, to: dead_path(conn, :index)
+  end
+
+  def retry(conn, %{ "jobs" => jobs_to_retry }) do
+    jobs_to_retry = jobs_to_retry || []
+
+    for job <- jobs_to_retry, do: DeadSet.requeue_job!(job)
 
     redirect conn, to: dead_path(conn, :index)
   end

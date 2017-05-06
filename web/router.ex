@@ -27,7 +27,8 @@ defmodule VerkWeb.Router do
     get "/scheduled", ScheduledController, :index
     delete "/scheduled", ScheduledController, :destroy
     get "/dead", DeadController, :index
-    delete "/dead", DeadController, :destroy
+    post "/dead/retry", DeadController, :retry
+    post "/dead/destroy", DeadController, :destroy
     get "/succeed", SucceedController, :index
     delete "/succeed", SucceedController, :destroy
   end
