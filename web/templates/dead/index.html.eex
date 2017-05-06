@@ -6,13 +6,14 @@
   <p>No dead jobs at the moment.</p>
 <% else %>
   <div>
-    <%= form_for @conn, dead_path(@conn, :destroy), [as: :delete_job, method: "DELETE"], fn _ -> %>
-    <input name="jobs_to_remove[]" type="hidden" value="" />
+    <%= form_for @conn, dead_path(@conn, :index), [as: :jobs, method: "GET"], fn _ -> %>
+    <input name="jobs[]" type="hidden" value="" />
     <table class="table">
       <thead>
         <tr>
           <th></th>
           <th>Id</th>
+          <th>Queue</th>
           <th>Retry count</th>
           <th>Class/Worker</th>
           <th>Arguments</th>
@@ -22,8 +23,9 @@
       <tbody>
       <%= for job <- jobs(@dead_jobs) do %>
         <tr>
-          <td><input name="jobs_to_remove[]" type="checkbox" value="<%= job.original_json %>" id="job_<%= job.jid %>" /></td>
+          <td><input name="jobs[]" type="checkbox" value="<%= job.original_json %>" id="job_<%= job.jid %>" /></td>
           <td><%= job.jid %></td>
+          <td><%= job.job.queue %></td>
           <td><%= job.retry_count %></td>
           <td><%= job.class %></td>
           <td>
@@ -47,7 +49,8 @@
 
     <div class="row">
       <div class="col-md-4">
-        <%= submit "Delete selected", class: "btn btn-danger btn-sm" %>
+        <%= link "Delete selected", to: dead_path(@conn, :destroy), data: [confirm: "Are you sure?", submit_method: :POST], class: "btn btn-danger btn-sm" %>
+        <%= link "Retry selected", to: dead_path(@conn, :retry), data: [confirm: "Are you sure?", submit_method: :POST], class: "btn btn-danger btn-sm" %>
       </div>
 
       <div class="col-md-8 text-right">

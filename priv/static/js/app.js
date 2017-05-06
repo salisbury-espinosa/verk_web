@@ -15188,9 +15188,46 @@ var _socket = require("./socket");
 var _socket2 = _interopRequireDefault(_socket);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function extraHandleSubmitLinkClick(el) {
+  var action = $(el).attr('href');
+  var method = $(el).data('submit-method');
+  if (action && method) {
+    $(el).closest("form").prop("method", method).prop("action", action).submit();
+    return true;
+  }
+  return false;
+}
+
+// Import local files
+//
+// Local files can be imported directly using relative
+// paths "./socket" or full ones "web/static/js/socket".
+
+// Brunch automatically concatenates all files in your
+// watched paths. Those paths can be configured at
+// config.paths.watched in "brunch-config.js".
+//
+// However, those files will only be executed if
+// explicitly imported. The only exception are files
+// in vendor, which are never wrapped in imports and
+// therefore are always executed.
+
+// Import dependencies
+//
+// If you no longer want to use a dependency, remember
+// to also remove its path from "config.paths.watched".
+
+
+window.addEventListener('click', function (event) {
+  if (event.target && extraHandleSubmitLinkClick(event.target)) {
+    event.preventDefault();
+    return false;
+  }
+}, false);
 });
 
-;require.register("web/static/js/socket.js", function(exports, require, module) {
+require.register("web/static/js/socket.js", function(exports, require, module) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -15266,9 +15303,9 @@ $(function () {
 exports.default = App;
 });
 
-;require.alias("phoenix_html/priv/static/phoenix_html.js", "phoenix_html");
+;require.alias("phoenix/priv/static/phoenix.js", "phoenix");
+require.alias("phoenix_html/priv/static/phoenix_html.js", "phoenix_html");
 require.alias("rickshaw/rickshaw.js", "rickshaw");
-require.alias("phoenix/priv/static/phoenix.js", "phoenix");
 require.alias("d3/d3.js", "d3");require.register("___globals___", function(exports, require, module) {
   
 });})();require('___globals___');
