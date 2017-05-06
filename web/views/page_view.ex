@@ -24,6 +24,10 @@ defmodule VerkWeb.PageView do
     Verk.DeadSet.count!
   end
 
+  def succeed_count do
+    Verk.SucceedSet.count!
+  end
+
   def uptime do
     {time, _} = :erlang.statistics(:wall_clock)
     Timex.Duration.from_milliseconds(time) |> Timex.format_duration(:humanized)

@@ -30,6 +30,7 @@
             <%= menu_item(@conn, retries_path(@conn, :index), "Retries") %>
             <%= menu_item(@conn, scheduled_path(@conn, :index), "Scheduled") %>
             <%= menu_item(@conn, dead_path(@conn, :index), "Dead") %>
+            <%= menu_item(@conn, succeed_path(@conn, :index), "Succeed") %>
           </ul>
         </div>
       </div>
