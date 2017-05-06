@@ -37,7 +37,7 @@ defmodule VerkWeb.Mixfile do
      {:phoenix_pubsub, "~> 1.0"},
      {:phoenix_html, "~> 2.6"},
      {:gettext, "~> 0.9"},
-     {:verk, "~> 0.13.5"},
+     {:verk, github: "salisbury-espinosa/verk", branch: "dev"},
      {:cowboy, "~> 1.0"},
      {:basic_auth, "~> 2.0"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},

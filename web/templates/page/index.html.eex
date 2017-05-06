@@ -7,6 +7,7 @@
     <div class="col-md-2 text-center"><div class="count"><%= total_failed() %></div><div class="desc">Total Failed</div></div>
     <div class="col-md-2 text-center"><div class="count"><%= retries_count() %></div><div class="desc">Retries</div></div>
     <div class="col-md-2 text-center"><div class="count"><%= dead_count() %></div><div class="desc">Dead</div></div>
+    <div class="col-md-2 text-center"><div class="count"><%= succeed_count() %></div><div class="desc">Succeed</div></div>
     <div class="col-md-2 text-center"><div class="count"><%= process_count() %></div><div class="desc">Process Count</div></div>
     <div class="col-md-2 text-center"><div class="count"><%= process_limit() %></div><div class="desc">Process Limit</div></div>
   </div>
