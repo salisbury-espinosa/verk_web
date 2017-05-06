@@ -7,7 +7,6 @@
 <% else %>
   <div>
     <%= form_for @conn, dead_path(@conn, :index), [as: :jobs, method: "GET"], fn _ -> %>
-    <input name="jobs[]" type="hidden" value="" />
     <table class="table">
       <thead>
         <tr>
